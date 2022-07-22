@@ -6,11 +6,12 @@ variable "region" {
  default = "us-east-1"
 }
 
-variable "sampleObject" {
-  type    = object({size=number, tag=string, isDev=bool})
-  default = {
-    size  : 40
-    tag   = "Dev ebs volume", 
-    isDev = true
-  }
+variable "sampleTags" {
+  default = ["Dev ebs volume with List", "Test ebs volume with List", "Prod ebs volume with List"]
+  type = list(string)
+}
+
+variable "ebsSizes" {
+  type = list(number)
+  default = [40, 80, 120]
 }
