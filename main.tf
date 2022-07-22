@@ -1,23 +1,13 @@
-variable "access_key" {}
-variable "secret_key" {}
-
-variable "region" {
- default = "us-east-1"
-}
-
-
 provider "aws" {
- access_key = "${   var.access_key }"
+ access_key = var.access_key
  secret_key = var.secret_key
- region     = "${  var.region}"
- version    = ">= 3.0"
+ region     = var.region
 }
 
- resource "aws_ebs_volume" "awsEbsExample" {
+ resource "aws_ebs_volume" "awsEbsExampleWithObject" {
   availability_zone = "us-east-1a"
-  size              = var.ebsSizes[0]
-
+  size = var.sampleObject["size"]
   tags = {
-    Name = var.sampleTags[1]
+    Name = var.sampleObject["tag"]
   }
 }
